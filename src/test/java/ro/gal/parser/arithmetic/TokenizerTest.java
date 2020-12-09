@@ -43,16 +43,16 @@ public class TokenizerTest {
     @Test(expected = RuntimeException.class)
     public void invalidChar() {
         Tokenizer tokenizer = new Tokenizer("12345c223");
-        tokenizer.nextToken();
-        tokenizer.nextToken();
+        tokenizer.advance();
+        tokenizer.advance();
     }
 
     private List<String> tokenize(String str) {
         ArrayList<String> tokens = new ArrayList<>();
         Tokenizer tokenizer = new Tokenizer(str);
-        String token;
-        while ((token = tokenizer.nextToken()) != null) {
-            tokens.add(token);
+        while (tokenizer.hasMoreTokens()) {
+            tokenizer.advance();
+            tokens.add(tokenizer.getToken());
         }
 
         return tokens;

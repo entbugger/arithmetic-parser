@@ -7,11 +7,25 @@ public class Tokenizer {
     private final String str;
     private int pos;//unprocessed position
 
+    private String token;
+
     public Tokenizer(String str) {
         this.str = str;
     }
 
-    public String nextToken() {
+
+    public String getToken() {
+        return this.token;
+    }
+
+    public boolean hasMoreTokens() {
+        return pos <= str.length()-1;
+    }
+
+    public void advance() {
+        this.token = nextToken();
+    }
+    private String nextToken() {
         String token = "";
 
         while (pos<str.length()) {
